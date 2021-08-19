@@ -83,9 +83,6 @@ endfunction
 command! -nargs=? IdioSync call borges#idio(<f-args>)
 nnoremap <C-F> :IdioSync 
 
-" command! -nargs=? IdioSync call cursor([getpos('$')[1], col(getpos('$')[1] )] ) | call borges#bifurcate(<f-args>)
-" nnoremap <C-F> :IdioSync 
-
 command! -nargs=? Bifurcate call borges#bifurcate(<f-args>)
 nnoremap <C-D> :Bifurcate 
 
