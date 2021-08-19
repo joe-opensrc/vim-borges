@@ -20,6 +20,18 @@ endif
 
 let s:currView  = g:borges_currView
 
+fun! borges#idio(...)
+
+  let l:lvl = get( a:, 1, g:borges_currView )
+  let alt_reg = '@' . l:lvl . '{'
+
+  exe "silent! norm! G$"
+  while searchpos('<|', 'Wb') != [0,0]
+    call borges#bifurcate(lvl)
+  endwhile
+
+endfunction
+
 fun! borges#bifurcate(...)
 
   "get 'filtering' lvl 
@@ -32,9 +44,13 @@ fun! borges#bifurcate(...)
 
   " mark the start of our workspace
   " exe "silent! norm! mz"
-  
+
+  if expand('<cWORD>') == '<|'
+    exe "silent! norm! w" 
+  endif 
+
   " look for opening token
-  if searchpos('<|', 'Wb') != [0,0]
+  if searchpos('<|', 'Wb' ) != [0,0]
     " mark x; jump to 'z, append region into "z, jump back to `x
     exe "silent! norm! mz"
  
@@ -53,30 +69,25 @@ fun! borges#bifurcate(...)
           " del `c..`z (charwise); paste "z prior. 
           exe "silent! norm! mv`xdiWdv`v`cdaWd`z"
          
-          "call until end
-          call borges#bifurcate(l:lvl)
-        else
-
-          call borges#bifurcate(l:lvl)
         endif 
-      else
-        call borges#bifurcate(l:lvl)
 
-      endif
+      endif    
 
-    else
-  
-      " skip unbound region
-      call borges#bifurcate(l:lvl) 
-
-    endif    
+    endif
 
   endif
 
+
 endfunction
 
-command! -nargs=? IdioSync call cursor([getpos('$')[1], col(getpos('$')[1] )] ) | call borges#bifurcate(<f-args>)
+command! -nargs=? IdioSync call borges#idio(<f-args>)
 nnoremap <C-F> :IdioSync 
+
+" command! -nargs=? IdioSync call cursor([getpos('$')[1], col(getpos('$')[1] )] ) | call borges#bifurcate(<f-args>)
+" nnoremap <C-F> :IdioSync 
+
+command! -nargs=? Bifurcate call borges#bifurcate(<f-args>)
+nnoremap <C-D> :Bifurcate 
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
