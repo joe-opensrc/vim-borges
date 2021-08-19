@@ -27,7 +27,7 @@ Currently the plugin provides 2 functions ( and corresponding shortcuts )
 NB., `lvl` defaults to: `\d\+`
 and can be controlled with the global variable: `g:borges_currView`
 
-If you ran either function on the example file above, you
+If you run either function on the example file above, you
 should get the following text as a result:
 
 ```txt
