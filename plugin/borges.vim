@@ -1,12 +1,12 @@
 " borges.vim -- Alt Text Switcher
 " Maintainer:   Joe OpenSrc
-" Version:      0.3
+" Version:      0.4
 " GetLatestVimScripts: 4359 1 :AutoInstall: borges.vim
 
 if exists("g:loaded_borges") || v:version < 801 || &cp
   finish
 endif
-let g:loaded_borges = 0.3
+let g:loaded_borges = 0.4
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -60,7 +60,7 @@ fun! borges#bifurcate(...)
       "delete the token; mark c; jump to `x
       exe "silent! norm! mx`z"
       " look for an alt block ( e.g., '@1{' ) opening token 
-      if search(alt_reg, 'W') > 0
+      if search(alt_reg, 'W', line("'x") ) > 0
         "skip to text; mark v
         exe "silent! norm! mc"
         " look for closing token
