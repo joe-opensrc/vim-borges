@@ -18,6 +18,15 @@ Some text: <|
 |>
 ```
 
+Install like so :=
+
+```
+  cd /path/to/preferred/location
+  git clone https://github.com/joe-opensrc/vim-borges.git
+  cd ~/.vim/plugins/joe-opensrc/start
+  ln -s /path/to/preferred/location/vim-borges borges 
+```
+
 Currently the plugin provides 2 functions ( and corresponding shortcuts )
 
 ```txt
