@@ -58,6 +58,11 @@ Install like so :=
 
 TODO:
 ```
-  find a way of handling spaces / column offsets in an intelligent manner...
+  - find a way of handling spaces / column offsets in an intelligent manner...
     perhaps with different notation, e.g., '%1{ }'
+  - look to making it memory sensible...streaming from top of file
+  - maybe try and get it working again with functions and not norm gestures...
+  - maybe look to using quickfix/loclist 
+  - make copy of current buffer and work on that 
+
 ```
