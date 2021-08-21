@@ -24,12 +24,10 @@ fun! borges#idio(...)
 
   let l:lvl = get( a:, 1, g:borges_currView )
   let alt_reg = '@' . l:lvl . '{'
-
-  exe "silent! norm! G$"
-  while searchpos('<|', 'Wb') != [0,0]
-    call borges#bifurcate(lvl)
-  endwhile
-
+    exe "silent! norm! G$"
+    while search('<|', 'nWb' ) > 0 
+      call borges#bifurcate(lvl) 
+    endwhile
 endfunction
 
 fun! borges#bifurcate(...)
@@ -57,26 +55,36 @@ fun! borges#bifurcate(...)
     " look for closing token
     if searchpairpos('<|', '', '|>', 'zW') != [0,0]
 
-      "delete the token; mark c; jump to `x
-      exe "silent! norm! mx`z"
+      " find closing token move to its right edge; mark x; jump z
+      exe "silent! norm! lmx`z"
       " look for an alt block ( e.g., '@1{' ) opening token 
-      if search(alt_reg, 'W', line("'x") ) > 0
+      if search(alt_reg, 'We', line("'x") ) > 0
         "skip to text; mark v
         exe "silent! norm! mc"
         " look for closing token
         if searchpairpos(alt_reg, '', '}', 'zW') != [0,0]
-          " skip to text; mark b; append `b..`v to "z (charwise);
-          " del `c..`z (charwise); paste "z prior. 
-          exe "silent! norm! mv`xdiWdv`v`cdaWd`z"
-         
+          exe "silent! norm! mvdv`x"
+          exe "silent! s/\\s\\+\\%'v//g"
+          exe "silent! norm! `cwd`z"
+        else
+          exe "silent! norm! `zb"  
         endif 
 
+      else 
+        exe "silent! norm! `zb"
+        return 1
       endif    
-
+    else
+      return 2
     endif
+
+  else 
+
+    return 1
 
   endif
 
+  return 0
 
 endfunction
 
