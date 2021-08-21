@@ -56,3 +56,8 @@ Install like so :=
   ln -s /path/to/preferred/location/vim-borges borges 
 ```
 
+TODO:
+```
+  find a way of handling spaces / column offsets in an intelligent manner...
+    perhaps with different notation, e.g., '%1{ }'
+```
