@@ -9,15 +9,6 @@ regions of text within a source document.
 
 Each region can contain a number of possible alternative blocks of text. 
 
-Something like this :=
-
-```txt
-Some text: <|
-  @1{ foo }
-  @2{ bar }
-|>
-```
-
 Currently the plugin provides 2 functions ( and corresponding commands + shortcuts )
 
 ```
@@ -34,8 +25,16 @@ Currently the plugin provides 2 functions ( and corresponding commands + shortcu
 NB., `lvl` defaults to: `\d\+`
 and can be controlled with the global variable: `g:borges_currView`
 
-If you run either function on the example file above, you
-should get the following text as a result:
+If you run either function on the example below...
+
+```txt
+Some text: <|
+  @1{ foo }
+  @2{ bar }
+|>
+```
+
+you should get the following text as a result:
 
 ```txt
 Some text: foo
