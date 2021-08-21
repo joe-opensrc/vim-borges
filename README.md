@@ -18,21 +18,19 @@ Some text: <|
 |>
 ```
 
-Install like so :=
+Currently the plugin provides 2 functions ( and corresponding commands + shortcuts )
 
 ```
-  cd /path/to/preferred/location
-  git clone https://github.com/joe-opensrc/vim-borges.git
-  cd ~/.vim/plugins/joe-opensrc/start
-  ln -s /path/to/preferred/location/vim-borges borges 
-```
-
-Currently the plugin provides 2 functions ( and corresponding shortcuts )
-
-```txt
   borges#bifurcate(lvl) " this will filter a region at the cursor 
   borges#idio(lvl)      " this will filter all regions within the buffer
+  
+  IdioSync call borges#idio(<f-args>)
+  <C-F> :IdioSync 
+
+  Bifurcate call borges#bifurcate(<f-args>)
+  <C-D> :Bifurcate 
 ```
+
 NB., `lvl` defaults to: `\d\+`
 and can be controlled with the global variable: `g:borges_currView`
 
@@ -48,5 +46,14 @@ you should get the following text as a result:
 
 ```txt
 Some text: bar 
+```
+
+Install like so :=
+
+```
+  cd /path/to/preferred/location
+  git clone https://github.com/joe-opensrc/vim-borges.git
+  cd ~/.vim/plugins/joe-opensrc/start
+  ln -s /path/to/preferred/location/vim-borges borges 
 ```
 
