@@ -1,12 +1,12 @@
 " borges.vim -- Alt Text Switcher
 " Maintainer:   Joe OpenSrc
-" Version:      0.4
+" Version:      0.5
 " GetLatestVimScripts: 4359 1 :AutoInstall: borges.vim
 
 if exists("g:loaded_borges") || v:version < 801 || &cp
   finish
 endif
-let g:loaded_borges = 0.4
+let g:loaded_borges = 0.5
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -14,15 +14,15 @@ set cpo&vim
 " sets the current view number
 " by default extracts the first alt in each region
 " could be set to an <int> ?
-if !exists("g:borges_currView")
-  let g:borges_currView = '\d\+'
+if !exists("g:borges_alt_view")
+  let g:borges_alt_view = '\d\+'
 endif
 
-let s:currView  = g:borges_currView
+let s:alt_view  = g:borges_alt_view
 
 fun! borges#idio(...)
 
-  let l:lvl = get( a:, 1, g:borges_currView )
+  let l:lvl = get( a:, 1, g:borges_alt_view )
   let alt_reg = '@' . l:lvl . '{'
     exe "silent! norm! G$"
     while search('<|', 'nWb' ) > 0 
@@ -33,7 +33,7 @@ endfunction
 fun! borges#bifurcate(...)
 
   "get 'filtering' lvl 
-  let l:lvl = get( a:, 1, g:borges_currView )
+  let l:lvl = get( a:, 1, g:borges_alt_view )
   " Alts region regex
   let alt_reg = '@' . l:lvl . '{'
 
