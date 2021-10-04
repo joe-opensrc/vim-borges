@@ -52,7 +52,7 @@ Install like so :=
 ```
   cd /path/to/preferred/location
   git clone https://github.com/joe-opensrc/vim-borges.git
-  cd ~/.vim/plugins/joe-opensrc/start
+  cd ~/.vim/pack/joe-opensrc/start
   ln -s /path/to/preferred/location/vim-borges borges 
 ```
 
